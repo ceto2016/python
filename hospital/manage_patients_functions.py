@@ -1,4 +1,4 @@
-
+# select feature
 def managePatients(PatientsList: list):
     inputFeature = 10
     while inputFeature != 0:
@@ -78,10 +78,14 @@ def editPatientById(PatientsList: list):
         elif i == PatientsList[-1]:
             print("sorry id not exist")
 
+# print all list
+
 
 def printAllPatients(PatientsList: list):
     for i in PatientsList:
         print(i)
+
+# ask abut id then find the id from the list
 
 
 def deletePatientByID(PatientsList: list):
@@ -92,6 +96,8 @@ def deletePatientByID(PatientsList: list):
             print("delete done")
         elif i == PatientsList[-1]:
             print("sorry id not exist")
+
+# this function see if user want to keep old information or new one
 
 
 def inputValidate(newValue, oldValue):

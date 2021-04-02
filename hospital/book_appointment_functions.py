@@ -1,4 +1,4 @@
-
+# select feature
 def bookAppointment(PatientsList: list):
     inputFeature = 10
     while inputFeature != 0:
@@ -17,6 +17,10 @@ def bookAppointment(PatientsList: list):
             cancelByID(PatientsList)
         if(inputFeature == 4):
             printAllPatients(PatientsList)
+
+# add new object with unique id
+# TODO
+# there is a better way for dealing with empty list but in anthor time
 
 
 def book(PatientsList: list):
@@ -51,6 +55,8 @@ def book(PatientsList: list):
                 print("add done")
                 return
 
+# first ask for id and cheack if it exist then print old information
+
 
 def editPatientById(PatientsList: list):
     id = int(input("please enter id for the patient"))
@@ -74,10 +80,14 @@ def editPatientById(PatientsList: list):
         elif i == PatientsList[-1]:
             print("sorry id not exist")
 
+# print all list
+
 
 def printAllPatients(PatientsList: list):
     for i in PatientsList:
         print(i)
+
+# ask abut id then find the id from the list
 
 
 def cancelByID(PatientsList: list):
@@ -88,6 +98,8 @@ def cancelByID(PatientsList: list):
             print("appointement has been canceled")
         elif i == PatientsList[-1]:
             print("sorry id not exist")
+
+# this function see if user want to keep old information or new one
 
 
 def inputValidate(newValue, oldValue):

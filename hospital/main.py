@@ -17,29 +17,6 @@ def auth():
     return "auth is't complete"
 
 
-def userFeatures():
-    UserFeatures = 10
-    while UserFeatures != 0:
-        UserFeatures = int(input('''
-        User Mode
-        to view all departments in hospital press 1
-        to view all doctors in hospital press 2
-        to view all patients in hospital press 3
-        to view patient by id press 4
-        to view doctor by id press 5
-        to return press 0'''))
-        if UserFeatures == 1:
-            userFunc.displayDepartment(dataBase["doctors"])
-        if UserFeatures == 2:
-            userFunc.displayAll(dataBase["doctors"])
-        if UserFeatures == 3:
-            userFunc.displayAll(dataBase["appointment"])
-        if UserFeatures == 4:
-            userFunc.displayById(dataBase["patients"])
-        if UserFeatures == 5:
-            userFunc.displayById(dataBase["doctors"])
-
-
 def mainFeature():
     MainFeature = 10
     while MainFeature != 0:
@@ -70,4 +47,4 @@ while(run != 0):
             run = 0
             print("no more tries sorry ^^ ,, system close")
     elif type == 2:
-        userFeatures()
+        userFunc.userFeatures(dataBase)
