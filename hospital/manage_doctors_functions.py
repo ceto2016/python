@@ -18,6 +18,9 @@ def manageDoctors(doctorsList: list):
             editdoctorById(doctorsList)
         if(inputFeature == 4):
             printAlldoctors(doctorsList)
+# add new object with unique id
+# TODO
+# there is a better way for dealing with empty list but in anthor time
 
 
 def addNewdoctor(doctorsList: list):
@@ -48,6 +51,8 @@ def addNewdoctor(doctorsList: list):
                 print("add done")
                 return
 
+# first ask for id and cheack if it exist then print old information
+
 
 def editdoctorById(doctorsList: list):
     id = int(input("please enter id for the doctor"))
@@ -69,6 +74,8 @@ def editdoctorById(doctorsList: list):
         elif i == doctorsList[-1]:
             print("sorry id not exist")
 
+# print all list
+
 
 def printAlldoctors(doctorsList: list):
     for i in doctorsList:
@@ -84,7 +91,6 @@ def deletedoctorByID(doctorsList: list):
             print("delete done")
         elif i == doctorsList[-1]:
             print("sorry id not exist")
-
 # this function see if user want to keep old information or new one
 
 

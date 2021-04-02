@@ -3,6 +3,8 @@ import manage_doctors_functions as doctorsFunc
 import book_appointment_functions as bookFunc
 import user_functions as userFunc
 
+# admin authentication system
+
 
 def auth():
     defalutPassword = 1234
@@ -15,6 +17,8 @@ def auth():
             tries = tries + 1
             inputPassword = input("wrong password try again")
     return "auth is't complete"
+
+# select admin main features
 
 
 def mainFeature():
@@ -33,8 +37,11 @@ def mainFeature():
             bookFunc.bookAppointment(dataBase["appointment"])
 
 
+# our data base
 dataBase = {"patients": [], "doctors": [], "appointment": []}
+# program flag when run equal 0 program will close
 run = 1
+# main function
 while(run != 0):
     type = int(input('''
     for admin press 1
@@ -44,7 +51,7 @@ while(run != 0):
         if state == "auth is complete":
             mainFeature()
         elif state == "auth is't complete":
-            run = 0
+            run = 0  # close
             print("no more tries sorry ^^ ,, system close")
-    elif type == 2:
+    elif type == 2:  # user mode
         userFunc.userFeatures(dataBase)

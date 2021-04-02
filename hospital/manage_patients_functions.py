@@ -19,6 +19,10 @@ def managePatients(PatientsList: list):
         if(inputFeature == 4):
             printAllPatients(PatientsList)
 
+# add new object with unique id
+# TODO
+# there is a better way for dealing with empty list but in anthor time
+
 
 def addNewPatient(PatientsList: list):
     id = int(input("please enter patient id"))
@@ -53,6 +57,8 @@ def addNewPatient(PatientsList: list):
                 print("add done")
                 return
 
+
+# first ask for id and cheack if it exist then print old information
 
 def editPatientById(PatientsList: list):
     id = int(input("please enter id for the patient"))
