@@ -12,11 +12,11 @@ def auth():
     inputPassword = int(input("please enter password"))
     while tries <= 2:
         if(inputPassword == defalutPassword):
-            return "auth is complete"
+            return True
         else:
             tries = tries + 1
             inputPassword = input("wrong password try again")
-    return "auth is't complete"
+    return False
 
 # select admin main features
 
@@ -43,15 +43,15 @@ dataBase = {"patients": [], "doctors": [], "appointment": []}
 run = 1
 # main function
 while(run != 0):
-    type = int(input('''
+    mode = int(input('''
     for admin press 1
     for user press 2'''))
-    if type == 1:  # admin mode
-        state = auth()
-        if state == "auth is complete":
+    if mode == 1:  # admin mode
+        authorized = auth()
+        if authorized:
             mainFeature()
-        elif state == "auth is't complete":
+        elif authorized:
             run = 0  # close
-            print("no more tries sorry ^^ ,, system close")
-    elif type == 2:  # user mode
+            print("no more tries sorry ^^ ,, system is closed")
+    elif mode == 2:  # user mode
         userFunc.userFeatures(dataBase)
