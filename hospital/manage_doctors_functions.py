@@ -10,13 +10,13 @@ def manageDoctors(doctorsList: list):
         to return press 0'''))
         if(inputFeature == 0):
             return
-        if(inputFeature == 1):
+        elif(inputFeature == 1):
             addNewdoctor(doctorsList)
-        if(inputFeature == 2):
+        elif(inputFeature == 2):
             deletedoctorByID(doctorsList)
-        if(inputFeature == 3):
+        elif(inputFeature == 3):
             editdoctorById(doctorsList)
-        if(inputFeature == 4):
+        elif(inputFeature == 4):
             printAlldoctors(doctorsList)
 # add new object with unique id
 # TODO
@@ -24,8 +24,16 @@ def manageDoctors(doctorsList: list):
 
 
 def addNewdoctor(doctorsList: list):
-    id = int(input("please enter doctor id"))
-    if len(doctorsList) == 0:
+    exist = False
+    id = int(input("please enter patient id"))
+    for i in doctorsList:
+        if i["id"] == id:
+            exist = True
+            print("sorry id is already exist")
+            break
+        elif i == doctorsList[-1]:
+            exist = False
+    if not exist:
         department = input("enter name of the department : ")
         name = input("enter name : ")
         phoneNumber = input("enter phone number : ")
@@ -34,44 +42,28 @@ def addNewdoctor(doctorsList: list):
                      "name": name, "address": address, "phone": phoneNumber}
         doctorsList.append(newdoctor)
         print("add done")
-        return
-    else:
-        for i in doctorsList:
-            if i["id"] == id:
-                print("sorry id is alrady exist")
-                return
-            elif i == doctorsList[-1]:
-                department = input("enter name of the department : ")
-                name = input("enter name : ")
-                phoneNumber = input("enter phone number : ")
-                address = input("enter address : ")
-                newdoctor = {"id": id, "department": department,
-                             "name": name, "address": address, "phone": phoneNumber}
-                doctorsList.append(newdoctor)
-                print("add done")
-                return
-
 # first ask for id and cheack if it exist then print old information
 
 
 def editdoctorById(doctorsList: list):
     id = int(input("please enter id for the doctor"))
-    for i in doctorsList:
-        if i["id"] == id:
+    for doctor in doctorsList:
+        if doctor["id"] == id:
             print("old information")
-            print(i)
+            print(doctor)
             print(
                 "enter new information and if you want to not change certain value enter 0")
             department = input("enter name of the department : ")
-            i["department"] = inputValidate(department, i["department"])
+            doctor["department"] = inputValidate(
+                department, doctor["department"])
             name = input("enter name of the dovtor following the case : ")
-            i["name"] = inputValidate(name, i["name"])
+            doctor["name"] = inputValidate(name, doctor["name"])
             phonNumber = input("enter doctor address : ")
-            i["phone"] = inputValidate(phonNumber, i["phone"])
+            doctor["phone"] = inputValidate(phonNumber, doctor["phone"])
             address = input("enter doctor address : ")
-            i["address"] = inputValidate(address, i["address"])
+            doctor["address"] = inputValidate(address, doctor["address"])
             print("edit done")
-        elif i == doctorsList[-1]:
+        elif doctor == doctorsList[-1]:
             print("sorry id not exist")
 
 # print all list

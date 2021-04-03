@@ -1,5 +1,5 @@
 # select feature
-def bookAppointment(PatientsList: list):
+def bookAppointment(booksList: list):
     inputFeature = 10
     while inputFeature != 0:
         inputFeature = int(input('''
@@ -10,93 +10,85 @@ def bookAppointment(PatientsList: list):
         if(inputFeature == 0):
             return
         if(inputFeature == 1):
-            book(PatientsList)
+            book(booksList)
         if(inputFeature == 2):
-            editPatientById(PatientsList)
+            editbookById(booksList)
         if(inputFeature == 3):
-            cancelByID(PatientsList)
+            cancelByID(booksList)
         if(inputFeature == 4):
-            printAllPatients(PatientsList)
+            printAllbooks(booksList)
 
 # add new object with unique id
 # TODO
 # there is a better way for dealing with empty list but in anthor time
 
 
-def book(PatientsList: list):
-    id = int(input("please enter patient id"))
-    if len(PatientsList) == 0:
-        department = input("enter name of the department : ")
-        doctor = input("enter name of the doctor following the case : ")
-        patientName = input("enter patient name : ")
-        age = input("enter patient age : ")
-        gender = input("enter patient gender :  (male or female)")
-        newPatient = {"id": id, "department": department, "doctor": doctor,
-                      "name": patientName, "age": age, "gender": gender}
-        PatientsList.append(newPatient)
-        print("add done")
-        return
+def book(booksList: list):
+    id = int(input("please enter book id"))
+    FlagAdd = False
+    if len(booksList) == 0:
+        FlagAdd = True
     else:
-        for i in PatientsList:
-            if i["id"] == id:
+        for book in booksList:
+            if book["id"] == id:
                 print("there's appointment with this id")
-                print(i)
+                print(book)
                 return
-            elif i == PatientsList[-1]:
+            elif book == booksList[-1] or FlagAdd:
                 department = input("enter name of the department : ")
                 doctor = input(
                     "enter name of the doctor following the case : ")
-                patientName = input("enter patient name : ")
-                age = input("enter patient age : ")
-                gender = input("enter patient gender :  (male or female)")
-                newPatient = {"id": id, "department": department, "doctor": doctor,
-                              "name": patientName, "age": age, "gender": gender}
-                PatientsList.append(newPatient)
+                bookName = input("enter book name : ")
+                age = input("enter book age : ")
+                gender = input("enter book gender :  (male or female)")
+                newbook = {"id": id, "department": department, "doctor": doctor,
+                           "name": bookName, "age": age, "gender": gender}
+                booksList.append(newbook)
                 print("add done")
                 return
 
 # first ask for id and cheack if it exist then print old information
 
 
-def editPatientById(PatientsList: list):
-    id = int(input("please enter id for the patient"))
-    for i in PatientsList:
-        if i["id"] == id:
+def editbookById(bookList: list):
+    id = int(input("please enter id for the book"))
+    for book in bookList:
+        if book["id"] == id:
             print("old information")
-            print(i)
+            print(book)
             print(
                 "enter new information and if you want to not change certain value enter 0")
             department = input("enter name of the department : ")
-            i["department"] = inputValidate(department, i["department"])
+            book["department"] = inputValidate(department, book["department"])
             doctor = input("enter name of the doctor following the case : ")
-            i["doctor"] = inputValidate(doctor, i["doctor"])
-            patientName = input("enter patient name : ")
-            i["name"] = inputValidate(patientName, i["name"])
-            age = input("enter patient age : ")
-            i["age"] = inputValidate(age, i["age"])
-            gender = input("enter patient gender :  (male or female)")
-            i["gender"] = inputValidate(gender, i["gender"])
+            book["doctor"] = inputValidate(doctor, book["doctor"])
+            bookName = input("enter book name : ")
+            book["name"] = inputValidate(bookName, book["name"])
+            age = input("enter book age : ")
+            book["age"] = inputValidate(age, book["age"])
+            gender = input("enter book gender :  (male or female)")
+            book["gender"] = inputValidate(gender, book["gender"])
             print("edit done")
-        elif i == PatientsList[-1]:
+        elif book == bookList[-1]:
             print("sorry id not exist")
 
 # print all list
 
 
-def printAllPatients(PatientsList: list):
-    for i in PatientsList:
-        print(i)
+def printAllbooks(booksList: list):
+    for book in booksList:
+        print(book)
 
 # ask abut id then find the id from the list
 
 
-def cancelByID(PatientsList: list):
-    id = int(input("please enter id for the patient"))
-    for i in PatientsList:
-        if i["id"] == id:
-            PatientsList.remove(i)
+def cancelByID(booksList: list):
+    id = int(input("please enter id for the book"))
+    for book in booksList:
+        if book["id"] == id:
+            booksList.remove(book)
             print("appointement has been canceled")
-        elif i == PatientsList[-1]:
+        elif book == booksList[-1]:
             print("sorry id not exist")
 
 # this function see if user want to keep old information or new one
@@ -109,9 +101,9 @@ def inputValidate(newValue, oldValue):
         return newValue
 
 
-'''def printPatientByID(PatientsList: list, id: int):
-    for i in PatientsList:
+'''def printbookByID(booksList: list, id: int):
+    for i in booksList:
         if i["id"] == id:
             print(i)
-        elif i == PatientsList[-1]:
+        elif i == booksList[-1]:
             print("sorry id not exist")'''

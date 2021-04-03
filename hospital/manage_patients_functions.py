@@ -10,13 +10,13 @@ def managePatients(PatientsList: list):
         to return press 0'''))
         if(inputFeature == 0):
             return
-        if(inputFeature == 1):
+        elif(inputFeature == 1):
             addNewPatient(PatientsList)
-        if(inputFeature == 2):
+        elif(inputFeature == 2):
             deletePatientByID(PatientsList)
-        if(inputFeature == 3):
+        elif(inputFeature == 3):
             editPatientById(PatientsList)
-        if(inputFeature == 4):
+        elif(inputFeature == 4):
             printAllPatients(PatientsList)
 
 # add new object with unique id
@@ -25,8 +25,16 @@ def managePatients(PatientsList: list):
 
 
 def addNewPatient(PatientsList: list):
+    exist = False
     id = int(input("please enter patient id"))
-    if len(PatientsList) == 0:
+    for patient in PatientsList:
+        if patient["id"] == id:
+            exist = True
+            print("sorry id is already exist")
+            break
+        elif patient == PatientsList[-1]:
+            exist = False
+    if not exist:
         department = input("enter name of the department : ")
         doctor = input("enter name of the doctor following the case : ")
         patientName = input("enter patient name : ")
@@ -37,70 +45,51 @@ def addNewPatient(PatientsList: list):
                       "name": patientName, "age": age, "gender": gender, "address": address}
         PatientsList.append(newPatient)
         print("add done")
-        return
-    else:
-        for i in PatientsList:
-            if i["id"] == id:
-                print("sorry id is alrady exist")
-                return
-            elif i == PatientsList[-1]:
-                department = input("enter name of the department : ")
-                doctor = input(
-                    "enter name of the doctor following the case : ")
-                patientName = input("enter patient name : ")
-                age = input("enter patient age : ")
-                gender = input("enter patient gender :  (male or female)")
-                address = input("enter patient address : ")
-                newPatient = {"id": id, "department": department, "doctor": doctor,
-                              "name": patientName, "age": age, "gender": gender, "address": address}
-                PatientsList.append(newPatient)
-                print("add done")
-                return
-
-
 # first ask for id and cheack if it exist then print old information
+
 
 def editPatientById(PatientsList: list):
     id = int(input("please enter id for the patient"))
-    for i in PatientsList:
-        if i["id"] == id:
+    for patient in PatientsList:
+        if patient["id"] == id:
             print("old information")
-            print(i)
+            print(patient)
             print(
                 "enter new information and if you want to not change certain value enter 0")
             department = input("enter name of the department : ")
-            i["department"] = inputValidate(department, i["department"])
+            patient["department"] = inputValidate(
+                department, patient["department"])
             doctor = input("enter name of the doctor following the case : ")
-            i["doctor"] = inputValidate(doctor, i["doctor"])
+            patient["doctor"] = inputValidate(doctor, patient["doctor"])
             patientName = input("enter patient name : ")
-            i["name"] = inputValidate(patientName, i["name"])
+            patient["name"] = inputValidate(patientName, patient["name"])
             age = input("enter patient age : ")
-            i["age"] = inputValidate(age, i["age"])
+            patient["age"] = inputValidate(age, patient["age"])
             gender = input("enter patient gender :  (male or female)")
-            i["gender"] = inputValidate(gender, i["gender"])
+            patient["gender"] = inputValidate(gender, patient["gender"])
             address = input("enter patient address : ")
-            i["address"] = inputValidate(address, i["address"])
+            patient["address"] = inputValidate(address, patient["address"])
             print("edit done")
-        elif i == PatientsList[-1]:
+        elif patient == PatientsList[-1]:
             print("sorry id not exist")
 
 # print all list
 
 
 def printAllPatients(PatientsList: list):
-    for i in PatientsList:
-        print(i)
+    for patient in PatientsList:
+        print(patient)
 
 # ask abut id then find the id from the list
 
 
 def deletePatientByID(PatientsList: list):
     id = int(input("please enter id for the patient"))
-    for i in PatientsList:
-        if i["id"] == id:
-            PatientsList.remove(i)
+    for patient in PatientsList:
+        if patient["id"] == id:
+            PatientsList.remove(patient)
             print("delete done")
-        elif i == PatientsList[-1]:
+        elif patient == PatientsList[-1]:
             print("sorry id not exist")
 
 # this function see if user want to keep old information or new one
